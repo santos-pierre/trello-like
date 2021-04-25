@@ -2,19 +2,20 @@ import Head from 'next/head';
 import { Disclosure } from '@headlessui/react';
 import { XIcon, MenuIcon, ClipboardCheckIcon } from '@heroicons/react/outline';
 import { Fragment } from 'react';
-import List from '../List';
 
-type LayoutProps = {
+type BoardLayoutProps = {
     title?: string;
+    boardName: string;
 };
 
 const navigation = ['Boards', 'Settings'];
 
-export const Layout: React.FC<LayoutProps> = ({ title = 'Dashboard', children }) => {
+export const BoardLayout: React.FC<BoardLayoutProps> = ({ title = 'Dashboard', boardName, children }) => {
     return (
         <>
             <Head>
                 <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+                <title>{title}</title>
             </Head>
             <div className="min-h-screen bg-gray-100">
                 <div className="bg-indigo-600 pb-32">
@@ -104,21 +105,15 @@ export const Layout: React.FC<LayoutProps> = ({ title = 'Dashboard', children })
                     </Disclosure>
                     <header className="py-10">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                            <h1 className="text-3xl font-bold text-white">Board Name</h1>
+                            <h1 className="text-3xl font-bold text-white">{boardName}</h1>
                         </div>
                     </header>
                 </div>
 
                 <main className="-mt-32">
-                    <div className="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8 relative">
                         {/* Replace with your content */}
-                        <div className="flex w-full overflow-x-auto overflow-y-hidden space-x-4 h-[700px]">
-                            {Array(6)
-                                .fill(null)
-                                .map(() => {
-                                    return <List />;
-                                })}
-                        </div>
+                        {children}
                         {/* /End replace */}
                     </div>
                 </main>
@@ -127,4 +122,4 @@ export const Layout: React.FC<LayoutProps> = ({ title = 'Dashboard', children })
     );
 };
 
-export default Layout;
+export default BoardLayout;

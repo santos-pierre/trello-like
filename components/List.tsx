@@ -1,8 +1,8 @@
-import { ClipboardCheckIcon } from '@heroicons/react/outline';
+import Card from '@components/Card';
 
 export const List = () => {
     return (
-        <div className="bg-white h-full min-w-[336px] px-5 pb-5 rounded-lg shadow-lg">
+        <div className="bg-white h-full min-w-[336px] px-5 pb-5 rounded-lg shadow-lg relative">
             <div className="h-full">
                 <div className="bg-white px-4 py-5 border-b border-gray-200">
                     {/* Heading List  */}
@@ -22,23 +22,12 @@ export const List = () => {
                     {/* End Heading List */}
                 </div>
                 {/* List Content */}
-                <div className="mt-5">
-                    <div className="border-2 border-indigo-500 h-20 rounded-md flex flex-col justify-between px-4 py-1">
-                        <span className="text-sm">Card Title</span>
-                        <div className="text-xs flex justify-between">
-                            <div className="space-x-3">
-                                <div className="inline-flex items-baseline px-2.5 py-0.5 rounded-full text-xs font-medium md:mt-2 lg:mt-0 bg-green-100 text-green-800">
-                                    Front
-                                </div>
-                                <div className="inline-flex items-baseline px-2.5 py-0.5 rounded-full text-xs font-medium md:mt-2 lg:mt-0 bg-red-100 text-red-800">
-                                    Back
-                                </div>
-                            </div>
-                            <div>
-                                <ClipboardCheckIcon className="h-5 w-5 text-gray-500 hover:text-gray-300" />
-                            </div>
-                        </div>
-                    </div>
+                <div className="mt-5 space-y-5">
+                    {Array(3)
+                        .fill(null)
+                        .map((_element, index) => {
+                            return <Card key={`card-${index * (Math.random() * 100)}`} />;
+                        })}
                 </div>
                 {/* End List Content */}
             </div>
